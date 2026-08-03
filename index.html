@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23123328'/%3E%3Cpath d='M16 47V17h13.5c6.2 0 10 3.9 10 9.6s-3.8 9.6-10 9.6H23V47h-7Zm7-16.6h5.6c2.9 0 4.6-1.6 4.6-4.1s-1.7-4.1-4.6-4.1H23v8.2Z' fill='%23f6f3ec'/%3E%3Cpath d='M40 47l6-8 4 5 6-9' stroke='%23c98a2c' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
- 
+
   :root{
     --ink: #10241f;
     --paper: #f6f3ec;
@@ -19,11 +19,11 @@
     --line: rgba(16,36,31,0.14);
     --red: #a8432f;
   }
- 
+
   *{box-sizing:border-box; margin:0; padding:0;}
- 
+
   html{scroll-behavior:smooth;}
- 
+
   body{
     background:var(--paper);
     color:var(--ink);
@@ -31,15 +31,15 @@
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
   }
- 
+
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
   }
- 
+
   a{color:inherit;}
- 
+
   .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
- 
+
   /* ---------- NAV ---------- */
   nav{
     position:sticky; top:0; z-index:50;
@@ -73,7 +73,7 @@
     transition:background 0.2s ease, color 0.2s ease;
   }
   .nav-cta:hover{background:var(--ink); color:var(--paper);}
- 
+
   /* ---------- HERO ---------- */
   header.hero{
     padding:88px 0 64px;
@@ -119,7 +119,7 @@
     font-family:'Fraunces', serif; font-weight:600; font-size:1.7rem;
   }
   .hero-meta .lbl{font-size:0.82rem; color:rgba(16,36,31,0.6);}
- 
+
   /* ---------- SIMULADOR ---------- */
   section.simulador{padding:20px 0 80px;}
   .panel{
@@ -139,7 +139,7 @@
     font-size:1.9rem;
   }
   .panel-head p{color:rgba(246,243,236,0.65); font-size:0.92rem; max-width:38ch; margin-top:8px;}
- 
+
   .step-label{
     font-family:'JetBrains Mono', monospace;
     font-size:0.75rem;
@@ -148,7 +148,7 @@
     letter-spacing:0.08em;
     margin-bottom:14px;
   }
- 
+
   .amount-grid{
     display:grid;
     grid-template-columns:repeat(4, 1fr);
@@ -156,7 +156,7 @@
     margin-bottom:38px;
   }
   @media (max-width:640px){ .amount-grid{grid-template-columns:repeat(2,1fr);} }
- 
+
   .amount-card{
     background:rgba(246,243,236,0.05);
     border:1.5px solid rgba(246,243,236,0.18);
@@ -176,7 +176,7 @@
   }
   .amount-card .s{font-family:'JetBrains Mono', monospace; font-size:0.78rem; opacity:0.7;}
   .amount-card .n{font-family:'Fraunces', serif; font-weight:600; font-size:1.9rem; margin-top:2px;}
- 
+
   .cuotas-row{
     display:flex; gap:10px; flex-wrap:wrap;
     margin-bottom:38px;
@@ -199,7 +199,7 @@
     color:var(--moss-deep);
     border-color:var(--paper);
   }
- 
+
   .summary{
     background:rgba(246,243,236,0.06);
     border:1px solid rgba(246,243,236,0.14);
@@ -214,14 +214,14 @@
   .summary .k{font-family:'JetBrains Mono', monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:rgba(246,243,236,0.55);}
   .summary .v{font-family:'Fraunces', serif; font-size:1.5rem; font-weight:600; margin-top:6px;}
   .summary .v small{font-family:'Space Grotesk',sans-serif; font-size:0.85rem; font-weight:400; opacity:0.65;}
- 
+
   .tcea-note{
     font-size:0.8rem;
     color:rgba(246,243,236,0.55);
     margin-bottom:34px;
     line-height:1.6;
   }
- 
+
   form.contact{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -231,10 +231,11 @@
   form.contact label{
     display:block;
     font-family:'JetBrains Mono', monospace;
-    font-size:0.72rem;
+    font-size:0.74rem;
     text-transform:uppercase;
     letter-spacing:0.06em;
-    color:rgba(246,243,236,0.6);
+    color:var(--paper);
+    font-weight:500;
     margin-bottom:8px;
   }
   form.contact input{
@@ -244,15 +245,16 @@
     border-radius:10px;
     padding:13px 14px;
     color:var(--paper);
+    font-weight:500;
     font-family:'Space Grotesk', sans-serif;
     font-size:0.98rem;
     outline:none;
     transition:border-color 0.18s ease;
   }
-  form.contact input::placeholder{color:rgba(246,243,236,0.35);}
+  form.contact input::placeholder{color:rgba(246,243,236,0.5);}
   form.contact input:focus{border-color:var(--gold-soft);}
   form.contact input:focus-visible{outline:2px solid var(--gold-soft); outline-offset:2px;}
- 
+
   .submit-row{
     grid-column:1 / -1;
     display:flex; align-items:center; gap:18px;
@@ -276,13 +278,13 @@
   button.cta:focus-visible{outline:2px solid var(--paper); outline-offset:3px;}
   button.cta:disabled{opacity:0.4; cursor:not-allowed; transform:none; box-shadow:none;}
   .helper-text{font-size:0.82rem; color:rgba(246,243,236,0.5);}
- 
+
   /* ---------- PROCESO ---------- */
   section.proceso{padding:70px 0;}
   .proceso-head{max-width:52ch; margin-bottom:46px;}
   .proceso-head h2{font-family:'Fraunces', serif; font-weight:600; font-size:2rem;}
   .proceso-head p{margin-top:12px; color:rgba(16,36,31,0.68);}
- 
+
   .timeline{
     display:grid;
     grid-template-columns:repeat(4, 1fr);
@@ -302,7 +304,7 @@
   .t-item .idx{font-family:'JetBrains Mono', monospace; color:var(--gold); font-size:0.85rem; margin-bottom:10px;}
   .t-item h3{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; margin-bottom:8px;}
   .t-item p{font-size:0.9rem; color:rgba(16,36,31,0.65);}
- 
+
   /* ---------- CONFIANZA / LEGAL ---------- */
   section.confianza{padding:20px 0 90px;}
   .trust-box{
@@ -326,14 +328,14 @@
   }
   .trust-box li:last-child{border-bottom:none;}
   .trust-box li::before{content:'—'; color:var(--gold); flex-shrink:0;}
- 
+
   .legal-note{
     font-size:0.8rem;
     line-height:1.7;
     color:rgba(16,36,31,0.6);
   }
   .legal-note strong{color:var(--red);}
- 
+
   /* ---------- FOOTER ---------- */
   footer{
     border-top:1px solid var(--line);
@@ -348,7 +350,7 @@
   footer .brand-mini{
     font-family:'Fraunces', serif; font-weight:600; color:var(--ink);
   }
- 
+
   /* ---------- AJUSTES FINOS MÓVIL ---------- */
   @media (max-width:480px){
     .wrap{padding:0 18px;}
@@ -372,7 +374,7 @@
 </style>
 </head>
 <body>
- 
+
 <nav>
   <div class="wrap">
     <div class="brand">
@@ -386,7 +388,7 @@
     <a class="nav-cta" href="#simular">Simular préstamo</a>
   </div>
 </nav>
- 
+
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">Créditos personales en soles</div>
@@ -399,7 +401,7 @@
     </div>
   </div>
 </header>
- 
+
 <section class="simulador" id="simular">
   <div class="wrap">
     <div class="panel">
@@ -409,7 +411,7 @@
           <p>El monto y las cuotas que elijas aquí son los que le llegan a tu asesor, sin que tengas que repetirlos.</p>
         </div>
       </div>
- 
+
       <div class="step-label">Paso 1 — Elige el monto</div>
       <div class="amount-grid" id="amountGrid">
         <button type="button" class="amount-card" data-amount="50"><span class="s">Monto</span><div class="n">S/.50</div></button>
@@ -417,7 +419,7 @@
         <button type="button" class="amount-card" data-amount="150"><span class="s">Monto</span><div class="n">S/.150</div></button>
         <button type="button" class="amount-card" data-amount="200"><span class="s">Monto</span><div class="n">S/.200</div></button>
       </div>
- 
+
       <div class="step-label">Paso 2 — Elige en cuántas cuotas pagas</div>
       <div class="cuotas-row" id="cuotasRow">
         <button type="button" class="cuota-chip" data-cuotas="2">2 cuotas</button>
@@ -425,7 +427,7 @@
         <button type="button" class="cuota-chip" data-cuotas="4">4 cuotas</button>
         <button type="button" class="cuota-chip" data-cuotas="6">6 cuotas</button>
       </div>
- 
+
       <div class="summary">
         <div>
           <div class="k">Monto solicitado</div>
@@ -440,9 +442,9 @@
           <div class="v" id="sumTotal">—</div>
         </div>
       </div>
- 
+
       <p class="tcea-note">Interés fijo de 20% sobre el monto solicitado, sin importar el número de cuotas elegido. Sujeto a evaluación crediticia. El monto final y el cronograma exacto se confirman con tu asesor antes de cualquier desembolso — nunca se cobra nada por adelantado.</p>
- 
+
       <div class="step-label">Paso 3 — Te contactamos por WhatsApp</div>
       <form class="contact" id="contactForm">
         <div>
@@ -457,13 +459,13 @@
           <button type="submit" class="cta" id="ctaBtn" disabled>
             Continuar por WhatsApp →
           </button>
-          <span class="helper-text">Se abrirá WhatsApp con tu solicitud lista para enviar a un asesor.</span>
+          <span class="helper-text">Se abrirá WhatsApp con tu solicitud lista para enviar a un asesor, y quedará guardada en tu base de datos.</span>
         </div>
       </form>
     </div>
   </div>
 </section>
- 
+
 <section class="proceso">
   <div class="wrap">
     <div class="proceso-head">
@@ -494,7 +496,7 @@
     </div>
   </div>
 </section>
- 
+
 <section class="confianza">
   <div class="wrap">
     <div class="trust-box">
@@ -520,7 +522,7 @@
     </div>
   </div>
 </section>
- 
+
 <footer>
   <div class="wrap">
     <div class="brand-mini" style="display:flex; align-items:center; gap:8px;">
@@ -534,14 +536,15 @@
     <div>Atención: Lun–Sáb, 9:00–20:00 · Créditos sujetos a evaluación</div>
   </div>
 </footer>
- 
+
 <script>
   const WHATSAPP_NUMBER = "51939856638";
- 
+  const GOOGLE_SHEETS_WEBHOOK_URL = "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT"; // ← reemplaza con la URL del Paso A
+
   let selectedAmount = null;
   let selectedCuotas = null;
   const INTERES_FIJO = 0.20; // 20% fijo por préstamo, no depende del número de cuotas
- 
+
   const amountCards = document.querySelectorAll('.amount-card');
   const cuotaChips = document.querySelectorAll('.cuota-chip');
   const sumMonto = document.getElementById('sumMonto');
@@ -549,17 +552,17 @@
   const sumTotal = document.getElementById('sumTotal');
   const ctaBtn = document.getElementById('ctaBtn');
   const form = document.getElementById('contactForm');
- 
+
   function formatSoles(n){
     return 'S/.' + n.toFixed(2);
   }
- 
+
   function recalcular(){
     if(selectedAmount && selectedCuotas){
       const totalInteres = selectedAmount * INTERES_FIJO;
       const total = selectedAmount + totalInteres;
       const cuota = total / selectedCuotas;
- 
+
       sumMonto.innerHTML = formatSoles(selectedAmount);
       sumCuota.innerHTML = formatSoles(cuota) + ' <small>x ' + selectedCuotas + '</small>';
       sumTotal.innerHTML = formatSoles(total);
@@ -570,7 +573,7 @@
     }
     validarForm();
   }
- 
+
   amountCards.forEach(card => {
     card.addEventListener('click', () => {
       amountCards.forEach(c => c.classList.remove('active'));
@@ -579,7 +582,7 @@
       recalcular();
     });
   });
- 
+
   cuotaChips.forEach(chip => {
     chip.addEventListener('click', () => {
       cuotaChips.forEach(c => c.classList.remove('active'));
@@ -588,25 +591,54 @@
       recalcular();
     });
   });
- 
+
   const nombreInput = document.getElementById('nombre');
   const telefonoInput = document.getElementById('telefono');
- 
+
   function validarForm(){
     const listo = selectedAmount && selectedCuotas && nombreInput.value.trim().length > 2 && telefonoInput.value.trim().length >= 6;
     ctaBtn.disabled = !listo;
   }
- 
+
   nombreInput.addEventListener('input', validarForm);
   telefonoInput.addEventListener('input', validarForm);
- 
-  form.addEventListener('submit', (e) => {
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if(!selectedAmount || !selectedCuotas) return;
- 
+
     const nombre = nombreInput.value.trim();
     const telefono = telefonoInput.value.trim();
- 
+
+    const tasaMensual = INTERES_FIJO;
+    const total = selectedAmount * (1 + tasaMensual);
+    const cuota = total / selectedCuotas;
+
+    ctaBtn.disabled = true;
+    const textoOriginal = ctaBtn.textContent;
+    ctaBtn.textContent = 'Guardando...';
+
+    // Guarda el registro en la hoja de Google Sheets, si ya configuraste la URL
+    if (GOOGLE_SHEETS_WEBHOOK_URL && GOOGLE_SHEETS_WEBHOOK_URL !== "https://script.google.com/macros/s/AKfycbzzF-bBdljAmQYMEcmYkevpeGWMOipjqactDexNdB4p2JrZcjCY53amdj-I5-eNZ0Xfww/exec") {
+      try {
+        await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Apps Script no responde con headers CORS; el envío igual se completa
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            nombre: nombre,
+            telefono: telefono,
+            monto: selectedAmount,
+            cuotas: selectedCuotas,
+            cuota: cuota.toFixed(2),
+            total: total.toFixed(2)
+          })
+        });
+      } catch (err) {
+        console.error('No se pudo guardar en Google Sheets:', err);
+      }
+    }
+
     const mensaje =
 `Hola, quiero solicitar un préstamo con PrestaMax.
 Nombre: ${nombre}
@@ -614,12 +646,14 @@ Teléfono: ${telefono}
 Monto solicitado: S/.${selectedAmount}
 Cuotas: ${selectedCuotas}
 Quedo atento/a para continuar con la verificación.`;
- 
+
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
+
+    ctaBtn.textContent = textoOriginal;
+    ctaBtn.disabled = false;
   });
 </script>
- 
+
 </body>
 </html>
- 
