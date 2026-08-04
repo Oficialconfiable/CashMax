@@ -231,10 +231,11 @@
   form.contact label{
     display:block;
     font-family:'JetBrains Mono', monospace;
-    font-size:0.72rem;
+    font-size:0.74rem;
     text-transform:uppercase;
     letter-spacing:0.06em;
-    color:rgba(246,243,236,0.6);
+    color:var(--paper);
+    font-weight:500;
     margin-bottom:8px;
   }
   form.contact input{
@@ -244,12 +245,13 @@
     border-radius:10px;
     padding:13px 14px;
     color:var(--paper);
+    font-weight:500;
     font-family:'Space Grotesk', sans-serif;
     font-size:0.98rem;
     outline:none;
     transition:border-color 0.18s ease;
   }
-  form.contact input::placeholder{color:rgba(246,243,236,0.35);}
+  form.contact input::placeholder{color:rgba(246,243,236,0.5);}
   form.contact input:focus{border-color:var(--gold-soft);}
   form.contact input:focus-visible{outline:2px solid var(--gold-soft); outline-offset:2px;}
 
@@ -441,7 +443,7 @@
         </div>
       </div>
 
-      <p class="tcea-note">Simulación referencial con TCEA de 96% anual, sujeta a evaluación crediticia. El monto final, la tasa y el cronograma exacto se confirman con tu asesor antes de cualquier desembolso — nunca se cobra nada por adelantado.</p>
+      <p class="tcea-note">Interés fijo de 20% sobre el monto solicitado, sin importar el número de cuotas elegido. Sujeto a evaluación crediticia. El monto final y el cronograma exacto se confirman con tu asesor antes de cualquier desembolso — nunca se cobra nada por adelantado.</p>
 
       <div class="step-label">Paso 3 — Te contactamos por WhatsApp</div>
       <form class="contact" id="contactForm">
@@ -457,7 +459,7 @@
           <button type="submit" class="cta" id="ctaBtn" disabled>
             Continuar por WhatsApp →
           </button>
-          <span class="helper-text">Se abrirá WhatsApp con tu solicitud lista para enviar a un asesor.</span>
+          <span class="helper-text">Se abrirá WhatsApp con tu solicitud lista para enviar a un asesor, y quedará guardada en tu base de datos.</span>
         </div>
       </form>
     </div>
@@ -537,10 +539,11 @@
 
 <script>
   const WHATSAPP_NUMBER = "51939856638";
+  const GOOGLE_SHEETS_WEBHOOK_URL = "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT"; // ← reemplaza con la URL del Paso A
 
   let selectedAmount = null;
   let selectedCuotas = null;
-  const TCEA_ANUAL = 0.96; // referencial
+  const INTERES_FIJO = 0.20; // 20% fijo por préstamo, no depende del número de cuotas
 
   const amountCards = document.querySelectorAll('.amount-card');
   const cuotaChips = document.querySelectorAll('.cuota-chip');
@@ -556,8 +559,7 @@
 
   function recalcular(){
     if(selectedAmount && selectedCuotas){
-      const tasaMensual = TCEA_ANUAL / 12;
-      const totalInteres = selectedAmount * tasaMensual * selectedCuotas;
+      const totalInteres = selectedAmount * INTERES_FIJO;
       const total = selectedAmount + totalInteres;
       const cuota = total / selectedCuotas;
 
@@ -601,12 +603,41 @@
   nombreInput.addEventListener('input', validarForm);
   telefonoInput.addEventListener('input', validarForm);
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if(!selectedAmount || !selectedCuotas) return;
 
     const nombre = nombreInput.value.trim();
     const telefono = telefonoInput.value.trim();
+
+    const tasaMensual = INTERES_FIJO;
+    const total = selectedAmount * (1 + tasaMensual);
+    const cuota = total / selectedCuotas;
+
+    ctaBtn.disabled = true;
+    const textoOriginal = ctaBtn.textContent;
+    ctaBtn.textContent = 'Guardando...';
+
+    // Guarda el registro en la hoja de Google Sheets, si ya configuraste la URL
+    if (GOOGLE_SHEETS_WEBHOOK_URL && GOOGLE_SHEETS_WEBHOOK_URL !== "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT") {
+      try {
+        await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Apps Script no responde con headers CORS; el envío igual se completa
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            nombre: nombre,
+            telefono: telefono,
+            monto: selectedAmount,
+            cuotas: selectedCuotas,
+            cuota: cuota.toFixed(2),
+            total: total.toFixed(2)
+          })
+        });
+      } catch (err) {
+        console.error('No se pudo guardar en Google Sheets:', err);
+      }
+    }
 
     const mensaje =
 `Hola, quiero solicitar un préstamo con PrestaMax.
@@ -618,6 +649,9 @@ Quedo atento/a para continuar con la verificación.`;
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
+
+    ctaBtn.textContent = textoOriginal;
+    ctaBtn.disabled = false;
   });
 </script>
 
